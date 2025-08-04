@@ -1,4 +1,4 @@
-echo "this is a sample script"
+echo "this is a sample script of nopsai test branch"
 SAMPLE="Text to check"
 
 for i in $SAMPLE;do
