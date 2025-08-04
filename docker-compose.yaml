@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  bind:
+    image: ubuntu/bind9
+    container_name: bind9
+      #restart: Never
+    privileged: true
+    volumes:
+      - ./config/named.conf.local:/etc/bind/named.conf.local
+      - ./config/named.conf.options:/etc/bind/named.conf.options
+      - ./config/db.kubernetes.home:/etc/bind/db.kubernetes.home
+    ports:
+      - "192.168.1.16:53:53/tcp"
+      - "192.168.1.16:53:53/udp"
+      - "127.0.0.1:53:53/tcp"
+      - "127.0.0.1:53:53/udp"
+    command: ["named", "-f", "-c /etc/bind/named.conf"]
+
