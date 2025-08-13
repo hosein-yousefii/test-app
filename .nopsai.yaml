@@ -8,7 +8,9 @@ environment:
   DOCKER_HOST: "tcp://192.168.1.16:2375"
 steps:
   - name: git clone
-    goal: "clone repository: https://github.com/hosein-yousefii/test-app.git"
+    script: |
+      #!/bin/bash
+      git clone https://github.com/hosein-yousefii/test-app.git
     ignore_failure: false
 
   - name: waiting time
@@ -17,7 +19,9 @@ steps:
     - git clone
 
   - name: List envs
-    goal: list envs
+    script: |
+      #!/bin/bash
+      env
     depends_on:
     - git clone
 
