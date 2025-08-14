@@ -9,7 +9,7 @@ triggers:
 
   - on: push
     branches:
-      - *
+      - "*"
     path: .nopsai/main-pipeline.yaml
 
   # Trigger for pushes to any feature branch
