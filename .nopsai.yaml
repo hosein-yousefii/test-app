@@ -1,5 +1,7 @@
 name: Second Test Pipeline
 description: A sample pipeline.
+display_options:
+  github_view: "tree" # tree or flat
 llm_content_sharing: true   # by default it's true
 llm_output_sharing: true    # by default it's true
 container_image: "pipeline-image:latest"
