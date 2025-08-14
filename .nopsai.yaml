@@ -7,6 +7,11 @@ triggers:
       - main
     path: .nopsai/main-pipeline.yaml
 
+  - on: push
+    branches:
+      - *
+    path: .nopsai/main-pipeline.yaml
+
   # Trigger for pushes to any feature branch
   - on: push
     branches:
@@ -16,9 +21,3 @@ triggers:
   # Trigger for new pull requests
   - on: pull_request
     path: .nopsai/main-pipeline.yaml
-
-  # Trigger for creating a new tag
-  - on: create # This event is for creating branches or tags
-    tags:
-      - 'v*.*.*'
-    path: .nopsai/release-pipeline.yaml
