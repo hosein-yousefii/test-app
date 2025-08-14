@@ -15,7 +15,7 @@ triggers:
 
   # Trigger for new pull requests
   - on: pull_request
-    path: .nopsai/pr-checks-pipeline.yaml
+    path: .nopsai/main-pipeline.yaml
 
   # Trigger for creating a new tag
   - on: create # This event is for creating branches or tags
