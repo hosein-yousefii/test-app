@@ -10,7 +10,7 @@ triggers:
   # Trigger for pushes to any feature branch
   - on: push
     branches:
-      - 'feature/**'
+      - 'test-**'
     path: .nopsai/branch-pipeline.yaml
 
   # Trigger for new pull requests
