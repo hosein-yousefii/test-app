@@ -1,0 +1,116 @@
+version: '3.8'
+
+networks:
+  nopsai-net:
+    driver: bridge
+    name: nopsai-net
+    external: true
+
+
+services:
+  db:
+    container_name: nopsai-db
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_DB: nopsai_db
+      POSTGRES_USER: nopsai_user
+      POSTGRES_PASSWORD: yoursecurepassword
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U nopsai_user -d nopsai_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - nopsai-net
+
+  llm-agent:
+    container_name: nopsai-llm-agent
+    image: nopsai-llm-agent
+    build:
+      context: .
+      dockerfile: container/Dockerfile.llm-agent
+    restart: always
+    ports:
+      - "50051:50051"
+    depends_on:
+      db:
+        condition: service_healthy
+      base:
+        condition: service_completed_successfully
+    env_file:
+      - .env
+    networks:
+      - nopsai-net
+
+  nopsai:
+    container_name: nopsai
+    image: nopsai
+    build:
+      context: .
+      dockerfile: container/Dockerfile.nopsai
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+      base:
+        condition: service_completed_successfully
+    env_file:
+      - .env
+    networks:
+      - nopsai-net
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  git-bot:
+    container_name: nopsai-git-bot
+    image: nopsai-git-bot
+    build:
+      context: .
+      dockerfile: container/Dockerfile.git-bot
+    restart: always
+    ports:
+      - "8081:8081"
+    depends_on:
+      - db
+      - nopsai
+    env_file:
+      - .env
+    networks:
+      - nopsai-net
+
+
+      
+  agent:
+    container_name: nopsai-agent
+    image: nopsai-agent
+    build:
+      context: .
+      dockerfile: container/Dockerfile.agent
+    depends_on:
+      - base
+    entrypoint: 'true'
+
+  base:
+    container_name: nopsai-base
+    image: nopsai-base
+    build:
+      context: .
+      dockerfile: Dockerfile
+    entrypoint: 'true'
+
+  pipeline:
+    container_name: pipeline-image
+    image: pipeline-image
+    build:
+      context: .
+      dockerfile: container/Dockerfile.pipeline
+    depends_on:
+      - base
+    entrypoint: 'true'
