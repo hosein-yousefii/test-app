@@ -55,7 +55,7 @@ steps:
 
   - name: failure
     goal: "fail the step"
-    ignore_failure: true
+    ignore_failure: false
 
   - name: build-docker
     goal: build docker image with repo name and 3 taga, latest,latest git tag and commit hash 
