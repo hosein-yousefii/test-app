@@ -19,7 +19,7 @@ steps:
     ignore_failure: false
     
   - name: show-secret
-    goal: show me the value of TEST_SECRET
+    goal: show the value of TEST_SECRET
     secrets:
       - TEST_SECRET
       
