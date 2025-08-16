@@ -17,7 +17,12 @@ steps:
       git clone https://github.com/hosein-yousefii/test-app.git
       echo $TEST_SECRET
     ignore_failure: false
-
+    
+  - name: show-secret
+    goal: show me the value of TEST_SECRET
+    secrets:
+      - TEST_SECRET
+      
   - name: waiting-time
     goal: wait for 2 seconds
     image: ubuntu:latest
