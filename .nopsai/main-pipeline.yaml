@@ -1,9 +1,9 @@
-name: Second Test Pipeline
+name: Second-Test-Pipeline
 description: A sample pipeline.
+llm_content_sharing: true
+llm_output_sharing: true
 display_options:
-  github_view: "mermaid" # tree,flat or mermaid
-llm_content_sharing: true   # by default it's true
-llm_output_sharing: true    # by default it's true
+  github_view: "mermaid" # mermaid, tree or flat
 container_image: "pipeline-image:latest"
 working_directory: "/tmp/test"
 timeout: "20m"
@@ -26,6 +26,8 @@ steps:
 
   - name: list-envs
     image: alpine:latest
+    secrets:
+      - TEST_SECRET
     script: |
       #!/bin/bash
       env
@@ -53,9 +55,10 @@ steps:
     depends_on:
     - branch-versioning
 
-  - name: failure
-    goal: "fail the step"
-    ignore_failure: true
+  - name: test-secret
+    script: |
+      #!/bin/bash
+      echo $TEST_SECRET
 
   - name: build-docker
     goal: build docker image with repo name and 3 taga, latest,latest git tag and commit hash 
