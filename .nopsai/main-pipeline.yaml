@@ -15,6 +15,7 @@ steps:
     script: |
       #!/bin/bash
       git clone https://github.com/hosein-yousefii/test-app.git
+      echo $TEST_SECRET
     ignore_failure: false
 
   - name: waiting-time
