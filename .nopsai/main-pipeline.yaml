@@ -28,7 +28,7 @@ steps:
     image: ubuntu:latest
     llm_output_sharing: false
     depends_on:
-    - git-clone
+    - git-clon
 
   - name: list-envs-containers
     image: alpine:latest
