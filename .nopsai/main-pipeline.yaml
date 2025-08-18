@@ -18,8 +18,8 @@ steps:
       echo $TEST_SECRET
     ignore_failure: false
     
-  - name: list-envs-main
-    goal: write the value of TEST_SECRET to sample.txt
+  - name: write-secret
+    goal: write the value of TEST_SECRET env to sample.txt
     secrets:
       - TEST_SECRET
       
