@@ -21,6 +21,7 @@ steps:
     
   - name: write-secret
     goal: write the value of TEST_SECRET env to sample.txt
+    session: init
     secrets:
       - TEST_SECRET
       
