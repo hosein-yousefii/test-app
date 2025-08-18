@@ -16,6 +16,7 @@ steps:
       #!/bin/bash
       git clone https://github.com/hosein-yousefii/test-app.git
       echo $TEST_SECRET
+    session: pipeline-image
     ignore_failure: false
     
   - name: write-secret
@@ -47,6 +48,7 @@ steps:
 
   - name: branch-versioning
     goal: "Change branch to nopsai-test and get the latest tag"
+    session: pipeline-image
     depends_on:
     - git-clone
 
@@ -63,6 +65,7 @@ steps:
 
   - name: commit-hash
     goal: "what is the commit hash?"
+    session: pipeline-image
     depends_on:
     - branch-versioning
 
