@@ -17,17 +17,15 @@ steps:
       git clone https://github.com/hosein-yousefii/test-app.git
       echo $TEST_SECRET
     ignore_failure: false
-    session: init
     
   - name: write-secret
     goal: write the value of TEST_SECRET env to sample.txt
-    session: init
     secrets:
       - TEST_SECRET
       
   - name: waiting-time
     goal: wait for 2 seconds
-    image: ubuntu:latest
+    image: alpine:latest
     session: init
     llm_output_sharing: false
     depends_on:
@@ -35,6 +33,7 @@ steps:
 
   - name: list-envs-containers
     image: alpine:latest
+    session: init
     secrets:
       - TEST_SECRET
     script: |
@@ -69,6 +68,7 @@ steps:
     script: |
       #!/bin/bash
       cat sample.txt
+    session: init
     depends_on:
     - write-secret
 
@@ -81,5 +81,6 @@ steps:
   - name: report
     goal: "provide a report of all steps"
     image: alpine:latest
+    session: init
     depends_on:
     - build-docker
