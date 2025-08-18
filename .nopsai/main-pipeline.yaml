@@ -28,15 +28,13 @@ steps:
       
   - name: waiting-time
     goal: wait for 2 seconds
-    image: alpine:latest
-    session: alpine-latest-usage
+    session: pipeline-image
     llm_output_sharing: false
     depends_on:
     - git-clone
 
   - name: list-envs-containers
-    image: alpine:latest
-    session: alpine-latest-usage
+    session: pipeline-image
     secrets:
       - TEST_SECRET
     script: |
@@ -54,11 +52,13 @@ steps:
 
   - name: dockerfile-modification
     goal: "Modify Dockerfile and add copy statement to add docker-compose"
+    session: pipeline-image-docker
     depends_on:
     - branch-versioning
 
   - name: dockerfile-content
     goal: "show dockerfile content"
+    session: pipeline-image-docker
     llm_output_sharing: false
     depends_on:
     - dockerfile-modification
@@ -73,13 +73,14 @@ steps:
     script: |
       #!/bin/bash
       cat sample.txt
-    image: alpine:latest
-    session: alpine-latest-usage
+    session: ubuntu-latest-usage
     depends_on:
     - write-secret
 
   - name: build-docker
     goal: build docker image with repo name and 3 taga, latest,latest git tag and commit hash 
+    image: alpine:latest
+    session: alpine-latest-usage
     depends_on:
     - commit-hash
     - dockerfile-modification
