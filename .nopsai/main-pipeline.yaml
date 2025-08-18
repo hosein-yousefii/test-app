@@ -17,6 +17,7 @@ steps:
       git clone https://github.com/hosein-yousefii/test-app.git
       echo $TEST_SECRET
     ignore_failure: false
+    session: init
     
   - name: write-secret
     goal: write the value of TEST_SECRET env to sample.txt
