@@ -73,6 +73,7 @@ steps:
     script: |
       #!/bin/bash
       cat sample.txt
+    image: ubuntu:latest
     session: ubuntu-latest-usage
     depends_on:
     - write-secret
