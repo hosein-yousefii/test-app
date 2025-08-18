@@ -47,8 +47,6 @@ steps:
 
   - name: branch-versioning
     goal: "Change branch to nopsai-test and get the latest tag"
-    image: ubuntu:latest
-    session: ubuntu-latest-usage
     depends_on:
     - git-clone
 
