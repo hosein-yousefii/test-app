@@ -36,6 +36,7 @@ steps:
           #!/bin/bash
           env
           echo $TEST_SECRET
+          exit 1
         depends_on:
         - git-clone
 
