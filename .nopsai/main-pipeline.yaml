@@ -3,7 +3,7 @@ description: A sample pipeline.
 llm_content_sharing: true
 llm_output_sharing: true
 display_options:
-  github_view: "tree" # mermaid, tree or flat
+  github_view: "mermaid" # mermaid, tree or flat
 container_image: "pipeline-image:latest"
 working_directory: "/tmp/test"
 timeout: "20m"
@@ -15,6 +15,9 @@ steps:
     image: pipeline-image:latest
     secrets:
       - TEST_SECRET
+    volumes:
+      - "sample-exisitng:/tmp/sample-exisitng"
+      - "sample-new:/tmp/sample-new"
     tasks:
       - name: git-clone
         ignore_failure: false
