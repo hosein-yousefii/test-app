@@ -92,7 +92,7 @@ steps:
         - dockerfile-modification
 
   - name: image-scanning
-    include: "pipeline/reference-pipeline.yaml"
+    include: "pipeline:reference-pipeline.yaml"
     secrets:
       - TEST_SECRET
     volumes:
