@@ -86,7 +86,7 @@ steps:
     image: alpine:latest
     llm_output_sharing: false
     depends_on:
-    - docker-builder
+    - build-docker
 
   - name: report
     goal: "provide a report of all steps"
