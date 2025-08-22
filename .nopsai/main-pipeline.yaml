@@ -102,7 +102,7 @@ steps:
     depends_on:
     - build-docker
 
-  - name: simple-step
+  - name: overwrite
     include: "step:simple-step"
     ignore_failure: false
     llm_output_sharing: true
