@@ -102,6 +102,13 @@ steps:
     depends_on:
     - build-docker
 
+  - name: step-include
+    include: "step:simple-step"
+    ignore_failure: false
+    llm_output_sharing: true
+    depends_on:
+    - build-docker
+    
   - name: Check-steps
     goal: "Give me lines from history which are important"
     image: alpine:latest
