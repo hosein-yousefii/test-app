@@ -55,6 +55,8 @@ steps:
     image: ubuntu:latest
     secrets:
       - TEST_SECRET
+    depends_on:
+    - preparation
     tasks:
       - name: write-secret
         goal: write the value of TEST_SECRET env to sample.txt
@@ -69,11 +71,11 @@ steps:
   - name: docker-builder
     volumes:
       - "sample-exisitng:/tmp/sample-exisitng"
+    depends_on:
+    - preparation
     tasks:
       - name: dockerfile-modification
         goal: "Modify Dockerfile and add copy statement to add docker-compose"
-        depends_on:
-        - branch-versioning
 
       - name: dockerfile-content
         goal: "show dockerfile content"
@@ -89,7 +91,6 @@ steps:
       - name: build-docker
         goal: build docker image with repo name and 3 tag, latest,latest git tag and commit hash 
         depends_on:
-        - commit-hash
         - dockerfile-modification
 
   - name: image-scanning
@@ -100,7 +101,7 @@ steps:
     volumes:
       - "sample-exisitng:/tmp/sample-exisitng"
     depends_on:
-    - build-docker
+    - docker-builder
 
   - name: overwrite
     include: "step:simple-step"
@@ -111,18 +112,18 @@ steps:
     volumes:
       - "sample-exisitng:/tmp/sample-exisitng"
     depends_on:
-    - build-docker
+    - docker-builder
     
   - name: Check-steps
     goal: "Give me lines from history which are important"
     image: alpine:latest
     llm_output_sharing: false
     depends_on:
-    - build-docker
+    - docker-builder
 
   - name: report
     goal: "provide a report of all steps"
     volumes:
       - "sample-exisitng:/tmp/sample-exisitng"
     depends_on:
-    - build-docker
+    - check-steps
