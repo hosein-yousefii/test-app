@@ -8,6 +8,7 @@ container_image: "pipeline-image:latest"
 working_directory: "/tmp/test"
 timeout: "20m"
 environment:
+  - DOCKER_HOST
   - API_VERSION
   - TEST_ENV
 steps:
