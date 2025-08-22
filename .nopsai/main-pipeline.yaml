@@ -106,6 +106,10 @@ steps:
     include: "step:simple-step"
     ignore_failure: false
     llm_output_sharing: true
+    secrets:
+      - TEST_SECRET
+    volumes:
+      - "sample-exisitng:/tmp/sample-exisitng"
     depends_on:
     - build-docker
     
