@@ -126,4 +126,4 @@ steps:
     volumes:
       - "sample-exisitng:/tmp/sample-exisitng"
     depends_on:
-    - check-steps
+    - Check-steps
