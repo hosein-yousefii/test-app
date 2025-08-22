@@ -102,7 +102,7 @@ steps:
     - build-docker
 
   - name: Check-steps
-    script: ls -la
+    script: "Give me lines from history which are important"
     image: alpine:latest
     llm_output_sharing: false
     depends_on:
