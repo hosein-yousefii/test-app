@@ -93,6 +93,7 @@ steps:
 
   - name: image-scanning
     include: "pipeline:reference-pipeline.yaml"
+    sync: true
     secrets:
       - TEST_SECRET
     volumes:
