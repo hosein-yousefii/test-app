@@ -112,7 +112,7 @@ steps:
     volumes:
       - "sample-exisitng:/tmp/sample-exisitng"
     depends_on:
-    - docker-builder
+    - secret-validation
     
   - name: Check-steps
     goal: "Give me lines from history which are important"
