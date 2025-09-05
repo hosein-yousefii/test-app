@@ -11,7 +11,7 @@ triggers:
   # Trigger for pushes to any feature branch
   - on: push
     branches:
-      - 'test-**'
+      - 'nopsai-test**'
     path: branch-pipeline.yaml
 
   # Trigger for new pull requests
