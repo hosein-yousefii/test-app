@@ -50,7 +50,16 @@ steps:
         goal: "what is the commit hash?"
         depends_on:
         - branch-versioning
-
+  - name: image-scanning
+    include: "pipeline:reference-pipeline.yaml"
+    sync: true
+    secrets:
+      - TEST_SECRET
+    volumes:
+      - "sample-exisitng:/tmp/sample-exisitng"
+    depends_on:
+    - preparation
+    
   - name: secret-validation
     image: ubuntu:latest
     secrets:
