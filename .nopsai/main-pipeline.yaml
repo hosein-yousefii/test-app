@@ -52,7 +52,7 @@ steps:
         - branch-versioning
   - name: image-scanning
     include: "pipeline:reference-pipeline.yaml"
-    sync: true
+    sync: false
     secrets:
       - TEST_SECRET
     volumes:
