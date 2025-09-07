@@ -102,16 +102,6 @@ steps:
         depends_on:
         - dockerfile-modification
 
-  - name: image-scanning
-    include: "pipeline:reference-pipeline.yaml"
-    sync: true
-    secrets:
-      - TEST_SECRET
-    volumes:
-      - "sample-exisitng:/tmp/sample-exisitng"
-    depends_on:
-    - docker-builder
-
   - name: overwrite
     include: "step:simple-step"
     ignore_failure: false
