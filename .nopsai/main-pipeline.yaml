@@ -59,6 +59,14 @@ steps:
       - "sample-exisitng:/tmp/sample-exisitng"
     depends_on:
     - preparation
+
+  - name: included-main-pipeline
+    include: "pipeline:include.yaml"
+    sync: false
+    secrets:
+      - TEST_SECRET
+    depends_on:
+    - preparation
     
   - name: secret-validation
     image: ubuntu:latest
