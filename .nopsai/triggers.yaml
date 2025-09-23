@@ -5,12 +5,9 @@ triggers:
   - on: push
     branches:
       - main
-    path: main-pipeline.yaml
-    environment: prod
-  - on: push
-    branches:
-      - main
-    path: include.yaml
+    path: 
+      - main-pipeline.yaml
+      - include.yaml
     environment: prod
     
   # Trigger for pushes to any feature branch
