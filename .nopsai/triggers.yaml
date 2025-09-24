@@ -14,8 +14,10 @@ triggers:
   - on: push
     branches:
       - 'test-**'
-    paths: branch-pipeline.yaml
+    paths: 
+      - branch-pipeline.yaml
 
   # Trigger for new pull requests
   - on: pull_request
-    paths: main-pipeline.yaml
+    paths: 
+      - main-pipeline.yaml
