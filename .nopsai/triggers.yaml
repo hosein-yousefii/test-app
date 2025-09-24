@@ -8,7 +8,7 @@ triggers:
     pipelines:
       - path: .nopsai/main-pipeline.yaml
       - path: .nopsai/include.yaml
-      - url: 'https://raw.githubusercontent.com/hosein-yousefii/pre-nopsai/refs/heads/main/sample-pipeline/5-pipeline.yaml?token=GHSAT0AAAAAADGYBJ5RTYAI4H7DFOKBCPWW2GUJABQ'
+      - url: 'https://raw.githubusercontent.com/hosein-yousefii/pre-nopsai/refs/heads/main/sample-pipeline/5-pipeline.yaml'
     environment: prod
     
   # Trigger for pushes to any feature branch
