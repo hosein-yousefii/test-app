@@ -7,7 +7,7 @@ triggers:
       - main
     pipelines:
       - path: .nopsai/main-pipeline.yaml
-        environment: prod
+    environment: prod
     
   # Trigger for pushes to any feature branch
   - on: push
