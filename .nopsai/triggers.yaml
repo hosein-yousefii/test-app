@@ -5,7 +5,7 @@ triggers:
   - on: push
     branches:
       - main
-    path: 
+    paths: 
       - main-pipeline.yaml
       - include.yaml
     environment: prod
@@ -14,8 +14,8 @@ triggers:
   - on: push
     branches:
       - 'test-**'
-    path: branch-pipeline.yaml
+    paths: branch-pipeline.yaml
 
   # Trigger for new pull requests
   - on: pull_request
-    path: main-pipeline.yaml
+    paths: main-pipeline.yaml
