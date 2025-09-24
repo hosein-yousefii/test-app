@@ -5,19 +5,18 @@ triggers:
   - on: push
     branches:
       - main
-    paths: 
-      - main-pipeline.yaml
-      - include.yaml
-    environment: prod
+    pipelines:
+      - path: .nopsai/main-pipeline.yaml
+        environment: prod
     
   # Trigger for pushes to any feature branch
   - on: push
     branches:
       - 'test-**'
-    paths: 
-      - branch-pipeline.yaml
+    pipelines: 
+      - path: branch-pipeline.yaml
 
   # Trigger for new pull requests
   - on: pull_request
-    paths: 
-      - main-pipeline.yaml
+    pipelines: 
+      - path: main-pipeline.yaml
