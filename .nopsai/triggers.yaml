@@ -8,10 +8,12 @@ triggers:
     pipelines:
       - path: .nopsai/main-pipeline.yaml
       - url: 'https://github.com/hosein-yousefii/TerraformHelmSample/blob/main/included-pipeline.yaml'
-        provider: github
-        secret: 'GITHUB_PIPELINE_TOKEN'
+        authentication:
+          provider: github
+          secret: 'GITHUB_PIPELINE_TOKEN'
       - url: 'https://github.com/hosein-yousefii/pre-nopsai/blob/main/sample-pipeline/5-pipeline.yaml'
-        provider: github
+        authentication:
+          provider: github
     environment: prod
 
   # Trigger for pushes to any feature branch
