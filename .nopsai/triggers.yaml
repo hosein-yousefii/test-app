@@ -13,7 +13,7 @@ triggers:
   # Trigger for pushes to any feature branch
   - on: push
     branches:
-      - 'test-**'
+      - '*-test'
     pipelines: 
       - branch-pipeline.yaml
 
