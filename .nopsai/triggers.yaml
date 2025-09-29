@@ -6,7 +6,7 @@ triggers:
     branches:
       - main
     pipelines:
-      - .nopsai/main-pipeline.yaml
+      - main-pipeline.yaml
     environment: prod
     
   # Trigger for pushes to any feature branch
@@ -14,10 +14,10 @@ triggers:
     branches:
       - '**-test'
     pipelines: 
-      - .nopsai/branch-pipeline.yaml
+      - branch-pipeline.yaml
 
   # Trigger for new pull requests
   - on: pull_request
     pipelines: 
-      - .nopsai/main-pipeline.yaml
+      - main-pipeline.yaml
     environment: prod
