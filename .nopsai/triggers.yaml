@@ -6,10 +6,7 @@ triggers:
     branches:
       - main
     pipelines:
-      - path: .nopsai/main-pipeline.yaml
-      - path: .nopsai/include.yaml
-      - url: 'https://github.com/hosein-yousefii/pre-nopsai/blob/main/sample-pipeline/5-pipeline.yaml'
-        provider: github
+      - .nopsai/main-pipeline.yaml
     environment: prod
     
   # Trigger for pushes to any feature branch
@@ -17,10 +14,10 @@ triggers:
     branches:
       - '**-test'
     pipelines: 
-      - path: .nopsai/branch-pipeline.yaml
+      - .nopsai/branch-pipeline.yaml
 
   # Trigger for new pull requests
   - on: pull_request
     pipelines: 
-      - path: .nopsai/main-pipeline.yaml
+      - .nopsai/main-pipeline.yaml
     environment: prod
