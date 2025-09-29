@@ -15,9 +15,9 @@ triggers:
     branches:
       - 'test-**'
     pipelines: 
-      - path: .nopsai/branch-pipeline.yaml
+      - .nopsai/branch-pipeline.yaml
 
   # Trigger for new pull requests
   - on: pull_request
     pipelines: 
-      - path: .nopsai/main-pipeline.yaml
+      - .nopsai/main-pipeline.yaml
