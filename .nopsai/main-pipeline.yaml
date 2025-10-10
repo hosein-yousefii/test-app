@@ -55,7 +55,7 @@ steps:
         depends_on:
         - branch-versioning
   - name: image-scanning
-    include: "pipeline:reference-pipeline.yaml"
+    include: "pipeline:reference-pipeline"
     condition: "If the latest tag from preparation step was bigger than 2.0.0"
     sync: false
     secrets:
@@ -66,7 +66,7 @@ steps:
     - preparation
 
   - name: included-main-pipeline
-    include: "pipeline:include.yaml"
+    include: "pipeline:include-pipeline"
     sync: false
     secrets:
       - TEST_SECRET
