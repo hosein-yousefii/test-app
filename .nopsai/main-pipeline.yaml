@@ -116,7 +116,7 @@ steps:
         - dockerfile-modification
 
   - name: overwrite
-    include: "step:simple-step"
+    include: "step:shared/utilities/simple-step"
     ignore_failure: false
     llm_output_sharing: true
     secrets:
