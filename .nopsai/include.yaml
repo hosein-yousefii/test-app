@@ -49,7 +49,7 @@ steps:
         depends_on:
         - branch-versioning
   - name: image-scanning
-    include: "pipeline:reference-pipeline.yaml"
+    include: "pipeline:reference-pipeline"
     sync: false
     secrets:
       - TEST_SECRET
