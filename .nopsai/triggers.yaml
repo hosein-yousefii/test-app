@@ -5,14 +5,17 @@ triggers:
   - on: push
     branches:
       - main
-    path: main-pipeline.yaml
+    path: 
+      - main-pipeline.yaml
 
   # Trigger for pushes to any feature branch
   - on: push
     branches:
       - 'test-**'
-    path: branch-pipeline.yaml
+    path: 
+      - branch-pipeline.yaml
 
   # Trigger for new pull requests
   - on: pull_request
-    path: main-pipeline.yaml
+    path: 
+      - main-pipeline.yaml
