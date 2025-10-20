@@ -10,7 +10,7 @@ display_options:
   github_view: "mermaid" # mermaid, tree or flat
 container_image: "pipeline-image:latest"
 working_directory: "/tmp/test"
-timeout: "3s"
+timeout: "2m"
 environment:
   - DOCKER_HOST
   - API_VERSION
