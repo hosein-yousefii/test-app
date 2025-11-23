@@ -20,9 +20,6 @@ steps:
     image: pipeline-image:latest
     secrets:
       - TEST_SECRET
-    volumes:
-      - "sample-exisitng:/tmp/sample-exisitng"
-      - "sample-new:/tmp/sample-new"
     tasks:
       - name: git-clone
         ignore_failure: false
@@ -60,8 +57,6 @@ steps:
     sync: false
     secrets:
       - TEST_SECRET
-    volumes:
-      - "sample-exisitng:/tmp/sample-exisitng"
     depends_on:
     - preparation
 
@@ -121,8 +116,6 @@ steps:
     llm_output_sharing: true
     secrets:
       - TEST_SECRET
-    volumes:
-      - "sample-exisitng:/tmp/sample-exisitng"
     depends_on:
     - secret-validation
     
@@ -135,7 +128,5 @@ steps:
 
   - name: report
     goal: "provide a report of all steps"
-    volumes:
-      - "sample-exisitng:/tmp/sample-exisitng"
     depends_on:
     - Check-steps
