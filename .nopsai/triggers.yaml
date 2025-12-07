@@ -8,7 +8,7 @@ triggers:
     pipelines:
       - main-pipeline.yaml
       - include.yaml      
-    environment: prod
+    scope: prod
 
   # Trigger for pushes to any feature branch
   - on: push
