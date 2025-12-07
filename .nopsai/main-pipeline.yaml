@@ -11,7 +11,7 @@ display_options:
 container_image: "pipeline-image:latest"
 working_directory: "/tmp/test"
 timeout: "2m"
-environment:
+variables:
   - DOCKER_HOST
   - API_VERSION
   - TEST_ENV
