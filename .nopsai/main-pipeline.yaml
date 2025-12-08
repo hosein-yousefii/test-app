@@ -1,6 +1,7 @@
 name: main-pipeline
 description: A sample pipeline.
 llm_content_sharing: true
+
 llm_content_ignore:
   - ".git"
   - "README.md"
