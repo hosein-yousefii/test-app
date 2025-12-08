@@ -19,7 +19,7 @@ steps:
   - name: preparation
     image: pipeline-image:latest
     variables:
-      - API_VERSION: "this is inside"
+      API_VERSION: "this is inside"
     secrets:
       - TEST_SECRET
     volumes:
