@@ -36,7 +36,7 @@ steps:
           echo $API_VERSION
           ls -l /tmp
           ls -l /tmp/test/
-          ls -l /tmp/sample/existing/
+          ls -l /tmp/sample-existing/
 
       - name: waiting-time
         goal: Based only on shared workspace files, tell me which file you can see. Do not run commands. Return the answer only.
