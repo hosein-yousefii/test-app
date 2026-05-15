@@ -40,6 +40,7 @@ steps:
       - name: waiting-time
         goal: Based only on shared workspace files, tell me which file you can see. Do not run commands. Return the answer only.
         llm_output_sharing: false
+        llm_profile: fast
         depends_on:
         - git-clone
 
