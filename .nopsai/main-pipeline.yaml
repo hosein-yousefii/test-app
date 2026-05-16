@@ -17,11 +17,13 @@ variables:
   - DOCKER_HOST
   - API_VERSION
   - TEST_SCOPE
+  - Default:FROM_OTHER
 steps:
   - name: preparation
     image: hoseindocker/pipeline-image:latest
     secrets:
       - TEST_SECRET
+      - Default:OTHER_SEC
     variables:
       API_VERSION: "inside step overwrite"
     volumes:
