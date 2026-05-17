@@ -49,7 +49,10 @@ steps:
         - git-clone
 
       - name: repository-map
-        goal: list issues,commits and their dates
+        goal: goal: >-
+  You must call at least one approved GitHub MCP tool before returning a final action.
+  Use MCP to read repository metadata first, then summarize the project purpose,
+  important files, default branch, latest commit, and missing docs.
         mcp_profiles:
           - github-readonly
         depends_on:
