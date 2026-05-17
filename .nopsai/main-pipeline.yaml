@@ -48,6 +48,13 @@ steps:
         depends_on:
         - git-clone
 
+      - name: repository-map
+        goal: list issues,commits and their dates
+        mcp_profiles:
+          - github-readonly
+        depends_on:
+          - git-clone
+      
       - name: list-envs-containers
         variables:
           API_VERSION: "inside task overwrite"
