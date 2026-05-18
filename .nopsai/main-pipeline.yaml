@@ -22,6 +22,7 @@ variables:
 steps:
   - name: repository-map
     goal: list commits
+    llm_profile: standard
     mcp_profiles:
       - github-readonly
 
