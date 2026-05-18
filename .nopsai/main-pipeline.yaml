@@ -37,7 +37,7 @@ steps:
       - "sample-exisitng:/tmp/sample-exisiting"
       - "sample-new:/tmp/sample-new"
     depends_on:
-      - respository-map
+      - repository-map
     tasks:
       - name: git-clone
         ignore_failure: false
