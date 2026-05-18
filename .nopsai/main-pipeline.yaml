@@ -21,7 +21,8 @@ variables:
   - data-team/dev:DEVVAR
 steps:
   - name: repository-map
-    goal: list commit of test-app repo
+    goal: list commits
+    llm_profile: fast
     mcp_profiles:
       - github-readonly
 
