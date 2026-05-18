@@ -20,6 +20,11 @@ variables:
   - default:FROM_OTHER
   - data-team/dev:DEVVAR
 steps:
+  - name: repository-map
+    goal: list commit of test-app repo
+    mcp_profiles:
+      - github-readonly
+
   - name: preparation
     image: hoseindocker/pipeline-image:latest
     secrets:
@@ -31,6 +36,8 @@ steps:
     volumes:
       - "sample-exisitng:/tmp/sample-exisiting"
       - "sample-new:/tmp/sample-new"
+    depends_on:
+      - respository-map
     tasks:
       - name: git-clone
         ignore_failure: false
@@ -47,13 +54,6 @@ steps:
         llm_profile: fast
         depends_on:
         - git-clone
-
-      - name: repository-map
-        goal: You must call at least one approved GitHub MCP tool before returning a final action. Use MCP to read repository metadata first, then summarize the project purpose, important files, default branch, latest commit, and missing docs.
-        mcp_profiles:
-          - github-readonly
-        depends_on:
-          - git-clone
       
       - name: list-envs-containers
         variables:
@@ -75,6 +75,7 @@ steps:
         goal: "what is the commit hash?"
         depends_on:
         - branch-versioning
+        
   - name: image-scanning
     include: "pipeline:reference-pipeline"
     condition: "If the latest tag from preparation step was bigger than 2.0.0"
