@@ -13,6 +13,12 @@ display_options:
 container_image: "hoseindocker/pipeline-image:latest"
 working_directory: "/tmp/test"
 timeout: "2m"
+knowledge_context:
+  - kind: guardrail
+    ref: team-1/repo-check
+    required: true
+  - kind: architecture
+    path: .nopsai/docs/backend.md
 variables:
   - DOCKER_HOST
   - API_VERSION
@@ -22,6 +28,10 @@ variables:
 steps:
   - name: repository-map
     goal: list commits
+    knowledge_context:
+      - kind: guideline
+        ref: team-1/go-style
+        required: true
     llm_profile: standard
     mcp_profiles:
       - github-readonly
