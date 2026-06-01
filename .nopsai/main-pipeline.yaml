@@ -11,6 +11,8 @@ llm_profile: reasoning
 display_options:
   github_view: "mermaid" # mermaid, tree or flat
 container_image: "hoseindocker/pipeline-image:latest"
+runtime_pool: default
+affinity_enabled: true
 working_directory: "/tmp/test"
 timeout: "2m"
 knowledge_context:
@@ -38,6 +40,7 @@ steps:
 
   - name: preparation
     image: hoseindocker/pipeline-image:latest
+    runtime_pool: high-memory
     secrets:
       - TEST_SECRET
       - default:OTHER_SEC
