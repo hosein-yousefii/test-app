@@ -28,16 +28,6 @@ variables:
   - default:FROM_OTHER
   - data-team/dev:DEVVAR
 steps:
-  - name: repository-map
-    goal: list commits
-    knowledge_context:
-      - kind: guideline
-        ref: team-1/go-style
-        required: true
-    llm_profile: standard
-    mcp_profiles:
-      - github-readonly
-
   - name: preparation
     image: hoseindocker/pipeline-image:latest
     runtime_pool: high-memory
@@ -90,6 +80,16 @@ steps:
         depends_on:
         - branch-versioning
         
+  - name: repository-map
+    goal: list commits
+    knowledge_context:
+      - kind: guideline
+        ref: team-1/go-style
+        required: true
+    llm_profile: fast
+    mcp_profiles:
+      - github-readonly
+      
   - name: image-scanning
     include: "pipeline:reference-pipeline"
     condition: "If the latest tag from preparation step was bigger than 2.0.0"
@@ -117,12 +117,12 @@ steps:
     - preparation
     tasks:
       - name: write-secret
-        goal: write the value of TEST_SECRET env to sample.txt
+        goal: write the value of TEST_SECRET env to tmp/sample.txt
 
       - name: test-secret
         script: |
           #!/bin/bash
-          cat sample.txt
+          cat /tmp/sample.txt
         depends_on:
         - write-secret
 
@@ -152,7 +152,7 @@ steps:
         - dockerfile-modification
 
   - name: overwrite
-    include: "step:shared/utilities/simple-step"
+    include: "step:setup/announce"
     ignore_failure: false
     llm_output_sharing: true
     secrets:
